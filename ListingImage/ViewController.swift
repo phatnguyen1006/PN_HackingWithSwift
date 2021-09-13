@@ -13,8 +13,18 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        customTitle()
+        
         // Do any additional setup after loading the view.
         listingImage()
+    }
+    
+    func customTitle() {
+        self.title = "Photos"
+        // custom color and large-title
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        navigationController?.navigationBar.largeTitleTextAttributes = textAttributes
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func listingImage() {
@@ -42,6 +52,13 @@ class ViewController: UITableViewController {
         cell.backgroundColor = .white
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            vc.seletedImage = pictures[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }
