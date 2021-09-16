@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        // Show Scores Btn
+        setupShowScoresBtn()
         
         // Setup
         setupContries()
@@ -28,7 +30,15 @@ class ViewController: UIViewController {
         // Start Question
         askQuestion()
     }
-
+    
+    func setupShowScoresBtn() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(scoresTaped))
+    }
+    
+    @objc func scoresTaped() {
+        showScores(alert: nil)
+    }
+    
     func setupContries() {
         self.countries += ["france", "germany", "uk", "us"]
     }
@@ -50,13 +60,26 @@ class ViewController: UIViewController {
         // Random Flag
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
-
+        
         // Set Title
         self.title = countries[correctAnswer].uppercased()
-
+        
         self.btn1.setImage(UIImage(named: self.countries[0]), for: .normal)
         self.btn2.setImage(UIImage(named: self.countries[1]), for: .normal)
         self.btn3.setImage(UIImage(named: self.countries[2]), for: .normal)
+    }
+    
+    func showScores(alert: String? = "SCORES") {
+        // Create AlertController
+        let ac = UIAlertController(title: alert, message: "Your score is \(scores)", preferredStyle: .alert)
+        
+        // Add action into Controller
+        // askQuestion is callback
+        // -> Pass UIAlertAction! to create closure
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: alert != nil ? askQuestion: nil))
+
+        // Present to Screen
+        present(ac, animated: true)
     }
     
     @IBAction func btnTapped(_ sender: UIButton) {
@@ -68,17 +91,7 @@ class ViewController: UIViewController {
         else {
             alert = "Wrong"
         }
-        
-        // Create AlertController
-        let ac = UIAlertController(title: alert, message: "Your score is \(scores)", preferredStyle: .alert)
-        
-        // Add action into Controller
-        // askQuestion is callback
-        // -> Pass UIAlertAction! to create closure
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        // Present to Screen
-        present(ac, animated: true)
+
+        showScores(alert: alert)
     }
 }
-
