@@ -15,7 +15,8 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // self.view.backgroundColor = .white
         customTitle()
-
+        customShareBtn()
+        
         // show SelectedImage
         showSelectedImage()
     }
@@ -24,6 +25,25 @@ class DetailViewController: UIViewController {
         self.title = self.seletedImage
         // custom: never use Large Title
         navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    func customShareBtn() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTaped))
+    }
+    
+    @objc func shareTaped() {
+        // Shared Image
+        guard let sharedImage = self.imageView.image else {
+            print("No Image to share")
+            return
+        }
+        
+        // Create activity Controller
+        // activityItems: Contain objects we want to share.
+        let vc = UIActivityViewController(activityItems: [sharedImage], applicationActivities: [])
+        // Add activity in to Controller
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     
     func showSelectedImage() {
@@ -41,5 +61,5 @@ class DetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
-
+    
 }
