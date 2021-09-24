@@ -15,7 +15,7 @@ class Services {
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 // we're OK to parse!
-                if let lastData = parse(data) as? Petitions {
+                if let lastData = parse(data) as Petitions? {
                     return lastData.results
                 }
             }

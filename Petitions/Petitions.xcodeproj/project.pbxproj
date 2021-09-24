@@ -16,6 +16,8 @@
 		DA8DCFFB26FD9112008C10C0 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8DCFFA26FD9112008C10C0 /* Petition.swift */; };
 		DA8DCFFD26FD9181008C10C0 /* Petitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8DCFFC26FD9181008C10C0 /* Petitions.swift */; };
 		DA8DD00026FD91D7008C10C0 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8DCFFF26FD91D7008C10C0 /* Services.swift */; };
+		DAAFE0DE26FE42E1008D7ED4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAFE0DD26FE42E1008D7ED4 /* DetailViewController.swift */; };
+		DAAFE0E026FE434B008D7ED4 /* HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAFE0DF26FE434B008D7ED4 /* HTML.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		DA8DCFFA26FD9112008C10C0 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 		DA8DCFFC26FD9181008C10C0 /* Petitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petitions.swift; sourceTree = "<group>"; };
 		DA8DCFFF26FD91D7008C10C0 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		DAAFE0DD26FE42E1008D7ED4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = Service/DetailViewController.swift; sourceTree = "<group>"; };
+		DAAFE0DF26FE434B008D7ED4 /* HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTML.swift; path = Petitions/HTML.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 				DA8DCFE526FC8D2C008C10C0 /* AppDelegate.swift */,
 				DA8DCFE726FC8D2C008C10C0 /* SceneDelegate.swift */,
 				DA8DCFE926FC8D2C008C10C0 /* ViewController.swift */,
+				DAAFE0DD26FE42E1008D7ED4 /* DetailViewController.swift */,
 				DA8DCFEB26FC8D2C008C10C0 /* Main.storyboard */,
 				DA8DCFEE26FC8D2E008C10C0 /* Assets.xcassets */,
 				DA8DCFF026FC8D2E008C10C0 /* LaunchScreen.storyboard */,
@@ -87,6 +92,7 @@
 		DA8DCFFE26FD91B8008C10C0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				DAAFE0DF26FE434B008D7ED4 /* HTML.swift */,
 				DA8DCFFF26FD91D7008C10C0 /* Services.swift */,
 			);
 			path = Service;
@@ -164,10 +170,12 @@
 			files = (
 				DA8DCFEA26FC8D2C008C10C0 /* ViewController.swift in Sources */,
 				DA8DD00026FD91D7008C10C0 /* Services.swift in Sources */,
+				DAAFE0E026FE434B008D7ED4 /* HTML.swift in Sources */,
 				DA8DCFFB26FD9112008C10C0 /* Petition.swift in Sources */,
 				DA8DCFE626FC8D2C008C10C0 /* AppDelegate.swift in Sources */,
 				DA8DCFE826FC8D2C008C10C0 /* SceneDelegate.swift in Sources */,
 				DA8DCFFD26FD9181008C10C0 /* Petitions.swift in Sources */,
+				DAAFE0DE26FE42E1008D7ED4 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
