@@ -9,18 +9,18 @@ import UIKit
 
 class ViewController: UITableViewController {
     var petitions = [Petition]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        onInitData()
+        performSelector(inBackground: #selector(onInitData), with: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.petitions.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let petition = petitions[indexPath.row]
@@ -37,11 +37,17 @@ class ViewController: UITableViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func onInitData() {
+    @objc func onInitData() {
         if let data = Services.fetchData() as [Petition]? {
             petitions = data
-            tableView.reloadData()
+            performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        } else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
+    }
+    
+    @objc func showError() {
+        present(catchError("Loading Failed...", "Something went wrong"), animated: true)
     }
 }
 
