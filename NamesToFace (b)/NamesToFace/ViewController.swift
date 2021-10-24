@@ -16,6 +16,9 @@ class ViewController: UICollectionViewController {
 
         // Add Button
         addBtn()
+        
+        // Load data
+        loadDataWhenAppRun()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -60,6 +63,20 @@ class ViewController: UICollectionViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    func loadDataWhenAppRun() {
+        let defaults = UserDefaults.standard
+        
+        if let savedData = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                people = try jsonDecoder.decode([Person].self, from: savedData)
+            } catch {
+                print("Failed to load data")
+            }
+        }
+    }
+    
     func showRenameAlert(_ person: Person) {
         let ac = UIAlertController(title: "Rename Person", message: nil, preferredStyle: .alert)
         ac.addTextField()
@@ -69,6 +86,7 @@ class ViewController: UICollectionViewController {
             person.name = name
             
             self?.collectionView.reloadData()
+            self?.save()
         }))
         
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
@@ -82,6 +100,7 @@ class ViewController: UICollectionViewController {
         }
         
         self.collectionView.reloadData()
+        self.save()
     }
     
     func addBtn() {
@@ -94,6 +113,16 @@ class ViewController: UICollectionViewController {
         picker.allowsEditing = true
         picker.delegate = self
         self.present(picker, animated: true)
+    }
+    
+    func save() {
+        let jsonEncoder = JSONEncoder()
+        if let savedData = try? jsonEncoder.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        } else {
+            printContent("Failed to save data")
+        }
     }
 }
 
@@ -113,6 +142,7 @@ extension ViewController: UIImagePickerControllerDelegate & UINavigationControll
             // Save to Person List
             self.people.append(Person(name: "Unknown", image: imageName))
             collectionView.reloadData()
+            save()
         }
         // Dismiss the Avatar image.
         dismiss(animated: true, completion: nil)
