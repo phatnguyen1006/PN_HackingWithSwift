@@ -9,17 +9,15 @@ import UIKit
 
 class ViewController: UICollectionViewController {
     var people = [Person]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.backgroundColor = .white
-        
+
         // Add Button
         addBtn()
-        
-        loadDataWhenAppRun()
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return people.count
     }
@@ -62,16 +60,6 @@ class ViewController: UICollectionViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    // Load when App Start: retrieval from UserDefault
-    func loadDataWhenAppRun() {
-        let defaults = UserDefaults.standard
-        if let savedData = defaults.object(forKey: "people") as? Data {
-            if let decodedPeople = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedData) as? [Person] {
-                people = decodedPeople
-            }
-        }
-    }
-    
     func showRenameAlert(_ person: Person) {
         let ac = UIAlertController(title: "Rename Person", message: nil, preferredStyle: .alert)
         ac.addTextField()
@@ -80,7 +68,6 @@ class ViewController: UICollectionViewController {
             guard let name = ac?.textFields?[0].text else { return }
             person.name = name
             
-            self?.save()
             self?.collectionView.reloadData()
         }))
         
@@ -125,7 +112,6 @@ extension ViewController: UIImagePickerControllerDelegate & UINavigationControll
             
             // Save to Person List
             self.people.append(Person(name: "Unknown", image: imageName))
-            save()
             collectionView.reloadData()
         }
         // Dismiss the Avatar image.
@@ -135,13 +121,5 @@ extension ViewController: UIImagePickerControllerDelegate & UINavigationControll
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
-    }
-    
-    // Save to UserDefault forKeyy: "people"
-    func save() {
-        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false) {
-            let defaults = UserDefaults.standard
-            defaults.set(savedData, forKey: "people")
-        }
     }
 }
