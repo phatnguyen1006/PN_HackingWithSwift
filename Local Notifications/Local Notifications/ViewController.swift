@@ -9,7 +9,7 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navBar()
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
         
     }
-
+    
     @objc func registerLocal() {
         let center = UNUserNotificationCenter.current()
         
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     @objc func scheduleLocal() {
         registerCategories()
         
@@ -78,5 +78,17 @@ extension ViewController: UNUserNotificationCenterDelegate {
         
         // pull out userInfo when receive data...
         let userInfo = response.notification.request.content.userInfo
+        
+        if let customData = userInfo["customData"] as? String {
+            
+            switch response.actionIdentifier {
+            case UNNotificationDefaultActionIdentifier:
+                print("Default data")
+            case "show":
+                print("Show more information ...")
+            default:
+                break
+            }
+        }
     }
 }
