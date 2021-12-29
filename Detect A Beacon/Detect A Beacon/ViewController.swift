@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     @IBOutlet var distanceReading: UILabel!
+    var locationManager: CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
