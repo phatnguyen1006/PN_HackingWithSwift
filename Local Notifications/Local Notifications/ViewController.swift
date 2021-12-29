@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,12 +16,13 @@ class ViewController: UIViewController {
     }
     
     func navBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "register", style: .plain, target: self, action: #selector(registerLocal))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "schedule", style: .plain, target: self, action: #selector(scheduleLocal))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "register", style: .plain, target: self, action: #selector(registerLocal))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
 
     @objc func registerLocal() {
         let center = UNUserNotificationCenter.current()
+        center.delegate = self
         
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
