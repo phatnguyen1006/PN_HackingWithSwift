@@ -36,13 +36,26 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
+    
+    /// isMonitoringAvailable: Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
+    /// isRangingAvailable: Returns a Boolean value indicating whether the device supports ranging of beacons that use the iBeacon protocol.
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         if manager.authorizationStatus == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    
+                    // do stuff
                 }
             }
         }
     }
+    
+//    func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint) {
+//        if beacons.count > 0 {
+//            let beacon = beacons[0]
+//            update(distance: beacon.proximity)
+//        } else {
+//            update(distance: .unknown)
+//        }
+//    }
 }
