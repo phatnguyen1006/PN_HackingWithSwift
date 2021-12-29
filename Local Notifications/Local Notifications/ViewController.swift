@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-class ViewController: UIViewController, UNUserNotificationCenterDelegate {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,3 +67,6 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
 }
 
+extension ViewController: UNUserNotificationCenterDelegate {
+    
+}
