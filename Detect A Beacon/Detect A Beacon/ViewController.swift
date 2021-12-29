@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     @IBOutlet var distanceReading: UILabel!
     var locationManager: CLLocationManager?
     
@@ -35,3 +35,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
 }
 
+extension ViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedAlways {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    
+                }
+            }
+        }
+    }
+}
