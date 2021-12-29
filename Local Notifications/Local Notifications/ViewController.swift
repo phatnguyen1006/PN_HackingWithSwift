@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "register", style: .plain, target: self, action: #selector(registerLocal))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
-
-    @objc func registerLocal() {
+    
+    func registerCategory() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
@@ -34,6 +34,10 @@ class ViewController: UIViewController {
         center.setNotificationCategories([category])
         
         
+    }
+
+    @objc func registerLocal() {
+        let center = UNUserNotificationCenter.current()
         
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
