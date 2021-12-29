@@ -77,5 +77,6 @@ extension ViewController: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         // pull out userInfo when receive data...
+        let userInfo = response.notification.request.content.userInfo
     }
 }
