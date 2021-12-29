@@ -83,12 +83,17 @@ extension ViewController: UNUserNotificationCenterDelegate {
             
             switch response.actionIdentifier {
             case UNNotificationDefaultActionIdentifier:
+                // user swipe to unlock
                 print("Default data")
             case "show":
+                // the user tapped our "show more info…" button
                 print("Show more information ...")
             default:
                 break
             }
         }
+        
+        // must call completion when we done to alert to iOS ... hanlder is done
+        completionHandler()
     }
 }
