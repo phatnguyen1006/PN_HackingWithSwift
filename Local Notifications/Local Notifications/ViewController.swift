@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "schedule", style: .plain, target: self, action: #selector(scheduleLocal))
     }
     
-    func registerCategory() {
+    func registerCategories() {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
@@ -49,6 +49,8 @@ class ViewController: UIViewController {
     }
 
     @objc func scheduleLocal() {
+        registerCategories()
+        
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
         
