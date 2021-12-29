@@ -24,9 +24,9 @@ class ViewController: UIViewController {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         
-        /// UNNotificationAction:
-        /// UNNotificationCategory
-        /// setNotificationCategories
+        /// UNNotificationAction: Create Action Button for Notification Category on Lock Screen.
+        /// UNNotificationCategory: Create a category contain an action inside.
+        /// setNotificationCategories: Register Categories for Notifications.
         
         let show = UNNotificationAction(identifier: "show", title: "Tell me more ...", options: .foreground)
         let category = UNNotificationCategory(identifier: "alarm", actions: [show], intentIdentifiers: [])
