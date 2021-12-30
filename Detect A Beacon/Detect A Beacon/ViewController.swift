@@ -32,7 +32,40 @@ class ViewController: UIViewController {
         locationManager?.requestAlwaysAuthorization()
     }
     
+    // UUID: You're in a Acme Hardware Supplies store.
+    // Major: You're in the Glasgow branch.
+    // Minor: You're in the shoe department on the third floor.
     
+    func startScanning() {
+        let uuid = UUID(uuidString: "5A4BCFCE-174E-4BAC-A814-092E77F6B7E5")!
+        let beacon = CLBeaconRegion(uuid: uuid, major: 123, minor: 456, identifier: "MyBeacon")
+        
+        locationManager?.startMonitoring(for: beacon)
+        locationManager?.startRangingBeacons(satisfying: beacon.beaconIdentityConstraint)
+    }
+    
+    func update(distance: CLProximity) {
+        // Chage View
+        UIView.animate(withDuration: 1) {
+            switch distance {
+            case .unknown:
+                self.view.backgroundColor = .gray
+                self.distanceReading.text = "UNKNOWN"
+            case .immediate:
+                self.view.backgroundColor = .red
+                self.distanceReading.text = "RIGHT HERE"
+            case .near:
+                self.view.backgroundColor = .orange
+                self.distanceReading.text = "NEAR"
+            case .far:
+                self.view.backgroundColor = .blue
+                self.distanceReading.text = "FAR"
+            default:
+                self.view.backgroundColor = .black
+                self.distanceReading.text = "WHOA!"
+            }
+        }
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -44,18 +77,18 @@ extension ViewController: CLLocationManagerDelegate {
         if manager.authorizationStatus == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
-                    // do stuff
+                    startScanning()
                 }
             }
         }
     }
     
-//    func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint) {
-//        if beacons.count > 0 {
-//            let beacon = beacons[0]
-//            update(distance: beacon.proximity)
-//        } else {
-//            update(distance: .unknown)
-//        }
-//    }
+    func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint) {
+        if beacons.count > 0 {
+            let beacon = beacons[0]
+            update(distance: beacon.proximity)
+        } else {
+            update(distance: .unknown)
+        }
+    }
 }
