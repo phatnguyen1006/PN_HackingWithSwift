@@ -23,6 +23,15 @@ let language = ["It", "gonna", "haha"]
 
 weather.containsAny(of: language)
 
+let string = "This is a test string"
+let attributes: [NSAttributedString.Key: Any] = [
+    .foregroundColor: UIColor.white,
+    .backgroundColor: UIColor.red,
+    .font: UIFont.boldSystemFont(ofSize: 36)
+]
+
+let attributedString = NSAttributedString(string: string, attributes: attributes)
+
 extension String {
     func capitalizedWord(_ word: String) -> String {
         guard self.contains(word) else { return self }
