@@ -7,6 +7,10 @@
 
 /**
  * MultipeerConnectivity: Allow to link devices
+ * MCSession is the manager class that handles all multipeer connectivity for us.
+ * MCPeerID identifies each user uniquely in a session.
+ * MCAdvertiserAssistant is used when creating a session, telling others that we exist and handling invitations.
+ * MCBrowserViewController is used when looking for sessions, showing users who is nearby and letting them join.
  */
 
 import UIKit
@@ -127,7 +131,7 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
 
 extension ViewController: MCSessionDelegate, MCBrowserViewControllerDelegate{
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        //
+        // required
     }
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
