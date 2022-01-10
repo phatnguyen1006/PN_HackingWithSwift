@@ -49,8 +49,58 @@ class ViewController: UIViewController {
         
         imageView.image = img
     }
+    
+    func drawCircle() {
+        let rerender = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        
+        let img = rerender.image { ctx in
+            let rectangle = CGRect(x: 5, y: 5, width: 512, height: 512).insetBy(dx: 5, dy: 5)
+            // inserBy: Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.
+            
+            ctx.cgContext.setFillColor(UIColor.red.cgColor)
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.setLineWidth(10)
+            
+            ctx.cgContext.addEllipse(in: rectangle)
+            ctx.cgContext.drawPath(using: .fillStroke)
+        }
+        
+        imageView.image = img
+    }
+    
+    func drawCheckerboard() {
+        let rerender = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = rerender.image { ctx in
+            ctx.cgContext.setFillColor(UIColor.black.cgColor)
+            
+            for row in 0..<8 {
+                for col in 0..<8 {
+                    if (row + col) % 2 == 0 {
+                        // draw one more rectangle
+                        ctx.cgContext.fill(CGRect(x: col*64, y: row*64, width: 64, height: 64))
+                    }
+                }
+            }
+            
+        }
+        
+        imageView.image = img
+    }
+    
+    /**
+     translateBy() translates (moves) the current transformation matrix.
+     rotate(by:) rotates the current transformation matrix.
+     strokePath() strokes the path with your specified line width, which is 1 if you don't set it explicitly.
+     */
+    
+    func drawRotatedSquares() {
+        
+    }
 
     @IBAction func redrawBtn(_ sender: Any) {
+        currentDrawType+=1
         // if type > 5 => reset value to 0
         if currentDrawType > 5 {
             currentDrawType = 0
@@ -59,6 +109,10 @@ class ViewController: UIViewController {
         switch currentDrawType {
         case 0:
             drawRectangle()
+        case 1:
+            drawCircle()
+        case 2:
+            drawCheckerboard()
         default:
             break
         }
