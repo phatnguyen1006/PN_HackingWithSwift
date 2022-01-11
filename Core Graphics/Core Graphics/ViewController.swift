@@ -33,9 +33,9 @@ class ViewController: UIViewController {
     }
     
     func drawRectangle() {
-        let rerender = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
         
-        let img = rerender.image { ctx in
+        let img = renderer.image { ctx in
             // draw
             let rectangle = CGRect(x: 0, y: 0, width: 512, height: 512)
             
@@ -51,10 +51,10 @@ class ViewController: UIViewController {
     }
     
     func drawCircle() {
-        let rerender = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
         
         
-        let img = rerender.image { ctx in
+        let img = renderer.image { ctx in
             let rectangle = CGRect(x: 5, y: 5, width: 512, height: 512).insetBy(dx: 5, dy: 5)
             // inserBy: Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.
             
@@ -70,9 +70,9 @@ class ViewController: UIViewController {
     }
     
     func drawCheckerboard() {
-        let rerender = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
         
-        let img = rerender.image { ctx in
+        let img = renderer.image { ctx in
             ctx.cgContext.setFillColor(UIColor.black.cgColor)
             
             for row in 0..<8 {
@@ -89,14 +89,95 @@ class ViewController: UIViewController {
         imageView.image = img
     }
     
-    /**
-     translateBy() translates (moves) the current transformation matrix.
-     rotate(by:) rotates the current transformation matrix.
-     strokePath() strokes the path with your specified line width, which is 1 if you don't set it explicitly.
-     */
-    
     func drawRotatedSquares() {
+        /**
+         translateBy() translates (moves) the current transformation matrix.
+         rotate(by:) rotates the current transformation matrix.
+         strokePath() strokes the path with your specified line width, which is 1 if you don't set it explicitly.
+         */
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
         
+        let img = renderer.image { ctx in
+            ctx.cgContext.translateBy(x: 256, y: 256)
+            
+            let rotations = 16
+            let amount = Double.pi / Double(rotations)
+            
+            for _ in 0 ..< rotations {
+                ctx.cgContext.rotate(by: CGFloat(amount))
+                ctx.cgContext.addRect(CGRect(x: -128, y: -128, width: 256, height: 256))
+            }
+            
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.strokePath()
+        }
+        
+        imageView.image = img
+    }
+    
+    func drawLines() {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            ctx.cgContext.translateBy(x: 256, y: 256)
+            
+            var first = true
+            var length: CGFloat = 256
+            
+            for _ in 0 ..< 256 {
+                ctx.cgContext.rotate(by: .pi/2)
+                
+                // move(to: ): Begins a new subpath at the specified point.
+                // addLine(to: ): Appends a straight line segment from the current point to the specified point.
+                if first {
+                    ctx.cgContext.move(to: CGPoint(x: length, y: 50))
+                    first = false
+                } else {
+                    ctx.cgContext.addLine(to: CGPoint(x: length, y: 50))
+                }
+                
+                length *= 0.99
+            }
+            
+            
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.strokePath()
+        }
+        
+        imageView.image = img
+    }
+    
+    func drawImagesAndText() {
+        /**
+          1 Create a renderer at the correct size.
+          2 Define a paragraph style that aligns text to the center.
+          3 Create an attributes dictionary containing that paragraph style, and also a font.
+          4 Wrap that attributes dictionary and a string into an instance of NSAttributedString.
+          5 Load an image from the project and draw it to the context.
+          6 Update the image view with the finished result.
+         */
+        
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 512, height: 512))
+        
+        let img = renderer.image { ctx in
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            
+            let attrs: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 36),
+                .paragraphStyle: paragraphStyle
+            ]
+            
+            let string = "The best-laid schemes o'\nmice an' men gang aft agley"
+            let attributedString = NSAttributedString(string: string, attributes: attrs)
+            
+            attributedString.draw(with: CGRect(x: 32, y: 32, width: 448, height: 448), options: .usesLineFragmentOrigin, context: nil)
+            
+            let mouse = UIImage(named: "mouse")
+            mouse?.draw(at: CGPoint(x: 300, y: 150))
+        }
+        
+        imageView.image = img
     }
 
     @IBAction func redrawBtn(_ sender: Any) {
@@ -113,6 +194,12 @@ class ViewController: UIViewController {
             drawCircle()
         case 2:
             drawCheckerboard()
+        case 3:
+            drawRotatedSquares()
+        case 4:
+            drawLines()
+        case 5:
+            drawImagesAndText()
         default:
             break
         }
