@@ -13,6 +13,8 @@
 		DAAA0C97278E7E420080972F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA0C95278E7E420080972F /* Main.storyboard */; };
 		DAAA0C99278E7E450080972F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA0C98278E7E450080972F /* Assets.xcassets */; };
 		DAAA0C9C278E7E450080972F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA0C9A278E7E450080972F /* LaunchScreen.storyboard */; };
+		DAEA456E278EB11900492E69 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEA456D278EB11900492E69 /* KeychainItemAccessibility.swift */; };
+		DAEA4570278EB13200492E69 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEA456F278EB13200492E69 /* KeychainWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		DAAA0C98278E7E450080972F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAAA0C9B278E7E450080972F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAAA0C9D278E7E450080972F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAEA456D278EB11900492E69 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		DAEA456F278EB13200492E69 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				DAAA0C98278E7E450080972F /* Assets.xcassets */,
 				DAAA0C9A278E7E450080972F /* LaunchScreen.storyboard */,
 				DAAA0C9D278E7E450080972F /* Info.plist */,
+				DAEA456D278EB11900492E69 /* KeychainItemAccessibility.swift */,
+				DAEA456F278EB13200492E69 /* KeychainWrapper.swift */,
 			);
 			path = "Secret Swift";
 			sourceTree = "<group>";
@@ -139,8 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAAA0C94278E7E420080972F /* ViewController.swift in Sources */,
+				DAEA456E278EB11900492E69 /* KeychainItemAccessibility.swift in Sources */,
 				DAAA0C90278E7E420080972F /* AppDelegate.swift in Sources */,
 				DAAA0C92278E7E420080972F /* SceneDelegate.swift in Sources */,
+				DAEA4570278EB13200492E69 /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
