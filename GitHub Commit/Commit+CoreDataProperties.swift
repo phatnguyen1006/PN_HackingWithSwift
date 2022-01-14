@@ -2,7 +2,7 @@
 //  Commit+CoreDataProperties.swift
 //  GitHub Commit
 //
-//  Created by Phat Nguyen on 13/01/2022.
+//  Created by Phat Nguyen on 14/01/2022.
 //
 //
 

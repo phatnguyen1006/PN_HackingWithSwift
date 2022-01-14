@@ -15,8 +15,8 @@
 		DAADC513278FBCBD0001F6D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAADC511278FBCBD0001F6D0 /* LaunchScreen.storyboard */; };
 		DAADC51B278FD7280001F6D0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC51A278FD7280001F6D0 /* DetailViewController.swift */; };
 		DAADC51E278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAADC51C278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodeld */; };
-		DAADC5212790200B0001F6D0 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC51F2790200B0001F6D0 /* Commit+CoreDataClass.swift */; };
-		DAADC5222790200B0001F6D0 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC5202790200B0001F6D0 /* Commit+CoreDataProperties.swift */; };
+		DAADC52527910EFD0001F6D0 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC52327910EFD0001F6D0 /* Commit+CoreDataClass.swift */; };
+		DAADC52627910EFD0001F6D0 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC52427910EFD0001F6D0 /* Commit+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,8 @@
 		DAADC514278FBCBD0001F6D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAADC51A278FD7280001F6D0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DAADC51D278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubCommit.xcdatamodeld.xcdatamodel; sourceTree = "<group>"; };
-		DAADC51F2790200B0001F6D0 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		DAADC5202790200B0001F6D0 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		DAADC52327910EFD0001F6D0 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		DAADC52427910EFD0001F6D0 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,8 @@
 		DAADC505278FBCBB0001F6D0 /* GitHub Commit */ = {
 			isa = PBXGroup;
 			children = (
-				DAADC51F2790200B0001F6D0 /* Commit+CoreDataClass.swift */,
-				DAADC5202790200B0001F6D0 /* Commit+CoreDataProperties.swift */,
+				DAADC52327910EFD0001F6D0 /* Commit+CoreDataClass.swift */,
+				DAADC52427910EFD0001F6D0 /* Commit+CoreDataProperties.swift */,
 				DAADC506278FBCBB0001F6D0 /* AppDelegate.swift */,
 				DAADC508278FBCBB0001F6D0 /* SceneDelegate.swift */,
 				DAADC50A278FBCBB0001F6D0 /* ViewController.swift */,
@@ -150,9 +150,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAADC5212790200B0001F6D0 /* Commit+CoreDataClass.swift in Sources */,
+				DAADC52527910EFD0001F6D0 /* Commit+CoreDataClass.swift in Sources */,
 				DAADC50B278FBCBB0001F6D0 /* ViewController.swift in Sources */,
-				DAADC5222790200B0001F6D0 /* Commit+CoreDataProperties.swift in Sources */,
+				DAADC52627910EFD0001F6D0 /* Commit+CoreDataProperties.swift in Sources */,
 				DAADC507278FBCBB0001F6D0 /* AppDelegate.swift in Sources */,
 				DAADC509278FBCBB0001F6D0 /* SceneDelegate.swift in Sources */,
 				DAADC51B278FD7280001F6D0 /* DetailViewController.swift in Sources */,

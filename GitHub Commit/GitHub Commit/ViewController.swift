@@ -17,7 +17,10 @@ class ViewController: UITableViewController {
         
         sqlite()
         saveContext()
-        createCommit()
+    }
+    
+    func networkRequest() {
+        performSelector(inBackground: #selector(fetchCommit))
     }
     
     func sqlite() {
@@ -47,12 +50,29 @@ class ViewController: UITableViewController {
             }
         }
     }
-
-    func createCommit() {
-        let commit = Commit()
-        commit.date = Date()
-        commit.message = "Commit"
-        commit.url = "https://example.com"
+    
+    func configure(commit: Commit, usingJSON json: JSON) {
+        
+    }
+    
+    @objc func fetchCommit() {
+        if let data = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
+            
+            let jsonCommits = JSON(parseJSON: data)
+            let jsonCommitArray = jsonCommits.arrayValue
+            
+            print("Received \(jsonCommitArray.count) new commits.")
+            
+            
+            DispatchQueue.main.async { [unowned self] in
+                for jsonCommit in jsonCommitArray {
+                    let commit = Commit(context: self.container.viewContext)
+                    self.configure(commit: commit, usingJSON: jsonCommit)
+                }
+                
+                self.saveContext()
+            }
+        }
     }
 }
 
