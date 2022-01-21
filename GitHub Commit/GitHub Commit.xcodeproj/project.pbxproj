@@ -17,6 +17,7 @@
 		DAADC51E278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DAADC51C278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodeld */; };
 		DAADC52527910EFD0001F6D0 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC52327910EFD0001F6D0 /* Commit+CoreDataClass.swift */; };
 		DAADC52627910EFD0001F6D0 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAADC52427910EFD0001F6D0 /* Commit+CoreDataProperties.swift */; };
+		DAF27607279AF2E500B5ABE2 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF27606279AF2E500B5ABE2 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		DAADC51D278FE69D0001F6D0 /* GithubCommit.xcdatamodeld.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubCommit.xcdatamodeld.xcdatamodel; sourceTree = "<group>"; };
 		DAADC52327910EFD0001F6D0 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		DAADC52427910EFD0001F6D0 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		DAF27606279AF2E500B5ABE2 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				DAADC50F278FBCBD0001F6D0 /* Assets.xcassets */,
 				DAADC511278FBCBD0001F6D0 /* LaunchScreen.storyboard */,
 				DAADC514278FBCBD0001F6D0 /* Info.plist */,
+				DAF27606279AF2E500B5ABE2 /* SwiftyJSON.swift */,
 			);
 			path = "GitHub Commit";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				DAADC52527910EFD0001F6D0 /* Commit+CoreDataClass.swift in Sources */,
 				DAADC50B278FBCBB0001F6D0 /* ViewController.swift in Sources */,
 				DAADC52627910EFD0001F6D0 /* Commit+CoreDataProperties.swift in Sources */,
+				DAF27607279AF2E500B5ABE2 /* SwiftyJSON.swift in Sources */,
 				DAADC507278FBCBB0001F6D0 /* AppDelegate.swift in Sources */,
 				DAADC509278FBCBB0001F6D0 /* SceneDelegate.swift in Sources */,
 				DAADC51B278FD7280001F6D0 /* DetailViewController.swift in Sources */,
