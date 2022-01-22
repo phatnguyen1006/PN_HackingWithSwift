@@ -46,3 +46,5 @@ iOS _Swift _HackingWithSwift _100days with Swift
     - TouchID && FaceID, device keychain (pause app)
 29.
 30.
+38. Github Commit
+    - NSFetchRequest || NSManagedObject || NSPredicate || NSSortDescriptor || NSFetchedResultsController || ISO8601DateFormatter
