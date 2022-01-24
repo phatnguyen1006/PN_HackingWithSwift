@@ -16,6 +16,8 @@
 		DA57ECAB279C3A30009025EC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAA279C3A30009025EC /* SwiftyJSON.swift */; };
 		DA57ECAD279C3F08009025EC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAC279C3F08009025EC /* DetailViewController.swift */; };
 		DA57ECB0279C4230009025EC /* GithubCommit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAE279C4230009025EC /* GithubCommit.xcdatamodeld */; };
+		DAA7F416279E8A3D002F57C5 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA7F414279E8A3D002F57C5 /* Commit+CoreDataClass.swift */; };
+		DAA7F417279E8A3D002F57C5 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA7F415279E8A3D002F57C5 /* Commit+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		DA57ECAA279C3A30009025EC /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		DA57ECAC279C3F08009025EC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DA57ECAF279C4230009025EC /* GithubCommit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubCommit.xcdatamodel; sourceTree = "<group>"; };
+		DAA7F414279E8A3D002F57C5 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		DAA7F415279E8A3D002F57C5 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		DA57EC95279C384B009025EC /* GithubCommit */ = {
 			isa = PBXGroup;
 			children = (
+				DAA7F414279E8A3D002F57C5 /* Commit+CoreDataClass.swift */,
+				DAA7F415279E8A3D002F57C5 /* Commit+CoreDataProperties.swift */,
 				DA57EC96279C384B009025EC /* AppDelegate.swift */,
 				DA57EC98279C384B009025EC /* SceneDelegate.swift */,
 				DA57EC9A279C384B009025EC /* ViewController.swift */,
@@ -148,10 +154,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57EC9B279C384B009025EC /* ViewController.swift in Sources */,
+				DAA7F416279E8A3D002F57C5 /* Commit+CoreDataClass.swift in Sources */,
 				DA57ECB0279C4230009025EC /* GithubCommit.xcdatamodeld in Sources */,
 				DA57EC97279C384B009025EC /* AppDelegate.swift in Sources */,
 				DA57ECAD279C3F08009025EC /* DetailViewController.swift in Sources */,
 				DA57EC99279C384B009025EC /* SceneDelegate.swift in Sources */,
+				DAA7F417279E8A3D002F57C5 /* Commit+CoreDataProperties.swift in Sources */,
 				DA57ECAB279C3A30009025EC /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

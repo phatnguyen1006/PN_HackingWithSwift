@@ -16,10 +16,7 @@ class ViewController: UITableViewController {
         
         createPersistentContainer()
         
-        let commit = Commit()
-        commit.message = "Woo"
-        commit.url = "http://www.example.com"
-        commit.date = Date()
+        
     }
     
     func saveContext() {
