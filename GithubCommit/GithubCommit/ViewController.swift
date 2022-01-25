@@ -15,7 +15,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         createPersistentContainer()
-        
+        fetchJSON()
         
     }
     
@@ -53,6 +53,32 @@ class ViewController: UITableViewController {
         }
     }
     
+    func fetchJSON() {
+        performSelector(inBackground: #selector(fetchCommits), with: nil)
+    }
     
+    func configure(commit: Commit, usingJSON json: JSON) {
+        
+    }
+    
+        
+    @objc func fetchCommits() {
+        if let data = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
+            let jsonCommit = JSON(parseJSON: data)
+            
+            let jsonCommitArray = jsonCommit.arrayValue
+            
+            print("Received \(jsonCommitArray.count) new commits.")
+            
+            DispatchQueue.main.async { [unowned self] in
+                for jsonCommit in jsonCommitArray {
+                    let commit = Commit(context: self.container.viewContext)
+                    self.configure(commit: commit, usingJSON: jsonCommit)
+                }
+                
+                self.saveContext()
+            }
+        }
+    }
 }
 
