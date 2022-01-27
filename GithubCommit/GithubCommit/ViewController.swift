@@ -67,6 +67,11 @@ class ViewController: UITableViewController {
         
         // loadPersistentStores() method, which loads the saved database if it exists, or creates it otherwise
         container.loadPersistentStores { storeDescription, error in
+            /*
+             This instructs Core Data to allow updates to objects: if an object exists in its data store with message A, and an object with the same unique constraint ("sha" attribute) exists in memory with message B, the in-memory version "trumps" (overwrites) the data store version.
+             */
+            self.container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            
             if let error = error {
                 print("Unresolved error: \(error)")
             }
