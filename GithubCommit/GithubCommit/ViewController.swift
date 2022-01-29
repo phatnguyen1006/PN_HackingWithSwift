@@ -11,6 +11,7 @@ import CoreData
 class ViewController: UITableViewController {
     var container: NSPersistentContainer!
     var commits = [Commit]()
+    var commitPredicate: NSPredicate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,10 @@ class ViewController: UITableViewController {
         cell.detailTextLabel?.text = commit.date.description
         
         return cell
+    }
+    
+    func navBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(changeFilter))
     }
     
     func saveContext() {
@@ -82,6 +87,7 @@ class ViewController: UITableViewController {
         // create the fetch request -> create the query
         let request = Commit.createFetchRequest()
         let sort = NSSortDescriptor(key: "date", ascending: false)
+        request.predicate = commitPredicate
         request.sortDescriptors = [sort]
         
         do {
@@ -125,6 +131,13 @@ class ViewController: UITableViewController {
                 self.loadSavedData()
             }
         }
+    }
+    
+    @objc func changeFilter() {
+        let ac = UIAlertController(title: "Filter commits ...", message: nil, preferredStyle: .actionSheet)
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(ac, animated: true)
     }
 }
 
