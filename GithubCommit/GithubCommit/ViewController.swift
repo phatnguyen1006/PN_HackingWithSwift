@@ -134,10 +134,32 @@ class ViewController: UITableViewController {
     }
     
     @objc func changeFilter() {
+        // MARK: - Filter Actions
         let ac = UIAlertController(title: "Filter commits ...", message: nil, preferredStyle: .actionSheet)
+        
+        // 1
+        ac.addAction(UIAlertAction(title: "Show only fixes", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "message CONTAINS[c] 'fix'")
+            self.loadSavedData()
+        }))
+        // 2
+        ac.addAction(UIAlertAction(title: "Ignore Pull Request", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = NSPredicate(format: "NOT message BEGINSWITH 'Merge pull request'")
+            self.loadSavedData()
+        }))
+        // 3
+        ac.addAction(UIAlertAction(title: "Show only recent", style: .default, handler: { [unowned self] _ in
+            let twelveHoursAgo = Date().addingTimeInterval(-43200)
+            self.commitPredicate = NSPredicate(format: "date > %@", twelveHoursAgo as NSDate)
+            self.loadSavedData()
+        }))
+        // 4
+        ac.addAction(UIAlertAction(title: "Show all commits", style: .default, handler: { [unowned self] _ in
+            self.commitPredicate = nil
+            self.loadSavedData()
+        }))
         
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
     }
 }
-
