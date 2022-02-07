@@ -16,6 +16,8 @@
 		DA57ECAB279C3A30009025EC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAA279C3A30009025EC /* SwiftyJSON.swift */; };
 		DA57ECAD279C3F08009025EC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAC279C3F08009025EC /* DetailViewController.swift */; };
 		DA57ECB0279C4230009025EC /* GithubCommit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA57ECAE279C4230009025EC /* GithubCommit.xcdatamodeld */; };
+		DA780E3827AFB85800D40E0D /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA780E3627AFB85800D40E0D /* Author+CoreDataClass.swift */; };
+		DA780E3927AFB85800D40E0D /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA780E3727AFB85800D40E0D /* Author+CoreDataProperties.swift */; };
 		DAA7F41A279FAF96002F57C5 /* Commit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA7F418279FAF95002F57C5 /* Commit+CoreDataClass.swift */; };
 		DAA7F41B279FAF96002F57C5 /* Commit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA7F419279FAF96002F57C5 /* Commit+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +34,8 @@
 		DA57ECAA279C3A30009025EC /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		DA57ECAC279C3F08009025EC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DA57ECAF279C4230009025EC /* GithubCommit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubCommit.xcdatamodel; sourceTree = "<group>"; };
+		DA780E3627AFB85800D40E0D /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		DA780E3727AFB85800D40E0D /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		DAA7F418279FAF95002F57C5 /* Commit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		DAA7F419279FAF96002F57C5 /* Commit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Commit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -66,6 +70,8 @@
 		DA57EC95279C384B009025EC /* GithubCommit */ = {
 			isa = PBXGroup;
 			children = (
+				DA780E3627AFB85800D40E0D /* Author+CoreDataClass.swift */,
+				DA780E3727AFB85800D40E0D /* Author+CoreDataProperties.swift */,
 				DAA7F418279FAF95002F57C5 /* Commit+CoreDataClass.swift */,
 				DAA7F419279FAF96002F57C5 /* Commit+CoreDataProperties.swift */,
 				DA57EC96279C384B009025EC /* AppDelegate.swift */,
@@ -159,7 +165,9 @@
 				DA57EC97279C384B009025EC /* AppDelegate.swift in Sources */,
 				DA57ECAD279C3F08009025EC /* DetailViewController.swift in Sources */,
 				DA57EC99279C384B009025EC /* SceneDelegate.swift in Sources */,
+				DA780E3827AFB85800D40E0D /* Author+CoreDataClass.swift in Sources */,
 				DAA7F41B279FAF96002F57C5 /* Commit+CoreDataProperties.swift in Sources */,
+				DA780E3927AFB85800D40E0D /* Author+CoreDataProperties.swift in Sources */,
 				DA57ECAB279C3A30009025EC /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,7 +2,7 @@
 //  Commit+CoreDataProperties.swift
 //  GithubCommit
 //
-//  Created by Phát Nguyễn on 25/01/2022.
+//  Created by Phát Nguyễn on 06/02/2022.
 //
 //
 
@@ -20,6 +20,7 @@ extension Commit {
     @NSManaged public var message: String
     @NSManaged public var sha: String
     @NSManaged public var url: String
+    @NSManaged public var author: Author
 
 }
 
