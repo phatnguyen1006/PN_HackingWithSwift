@@ -10,30 +10,33 @@ import CoreData
 
 class ViewController: UITableViewController {
     var container: NSPersistentContainer!
-    var commits = [Commit]()
+    // var commits = [Commit]()
     var commitPredicate: NSPredicate?
+    var fetchedResultController: NSFetchedResultsController<Commit>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createPersistentContainer()
+        navBar()
         fetchJSON()
         loadSavedData()
         
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultController.sections?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commits.count
+        let sectionInfo = fetchedResultController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Commit", for: indexPath)
         
-        let commit = commits[indexPath.row]
+        let commit = fetchedResultController.object(at: indexPath)
         cell.textLabel?.text = commit.message
         cell.detailTextLabel?.text = "By \(commit.author.name) on \(commit.date.description)"
         
@@ -42,8 +45,30 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
-            vc.detailItem = commits[indexPath.row]
+            vc.detailItem = fetchedResultController.object(at: indexPath)
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return fetchedResultController.sections![section].name
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        /**
+         1) pulls out the Commit object that the user selected to delete,
+         2) removes it from the managed object context,
+         3) removes it from the commits array,
+         4) deletes it from the table view, then
+         5) saves the context.
+         * @Remember: you must call saveContext() whenever you want your changes to persist.
+         */
+        
+        if editingStyle == .delete {
+            let commit = fetchedResultController.object(at: indexPath)
+            container.viewContext.delete(commit)
+            
+            saveContext()           // save context in core data
         }
     }
     
@@ -91,15 +116,21 @@ class ViewController: UITableViewController {
     }
     
     func loadSavedData() {
-        // create the fetch request -> create the query
-        let request = Commit.createFetchRequest()
-        let sort = NSSortDescriptor(key: "date", ascending: false)
-        request.predicate = commitPredicate
-        request.sortDescriptors = [sort]
+        if fetchedResultController == nil {
+            // create the fetch request -> create the query
+            let request = Commit.createFetchRequest()
+            let sort = NSSortDescriptor(key: "author.name", ascending: true)
+            request.sortDescriptors = [sort]
+            request.fetchBatchSize = 20
+            
+            fetchedResultController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: container.viewContext, sectionNameKeyPath: "author.name", cacheName: nil)
+            fetchedResultController.delegate = self
+        }
+        
+        fetchedResultController.fetchRequest.predicate = commitPredicate
         
         do {
-            commits = try container.viewContext.fetch(request)
-            print("Got \(commits.count) commits")
+            try fetchedResultController.performFetch()
             tableView.reloadData()
         } catch {
             print("Fetch failed.")
@@ -140,9 +171,28 @@ class ViewController: UITableViewController {
         commit.author = commitAuthor
     }
     
+    func getNewestCommitDate() -> String {
+        let formatter = ISO8601DateFormatter()
+        
+        let newest = Commit.createFetchRequest()
+        let sort = NSSortDescriptor(key: "date", ascending: false)
+        newest.sortDescriptors = [sort]
+        newest.fetchLimit = 1
+        
+        // fetch the newst
+        if let commits = try? container.viewContext.fetch(newest) {
+            if commits.count > 0 {
+                return formatter.string(from: commits[0].date.addingTimeInterval(1))    // return the date + 1(s)
+            }
+        }
+        
+        return formatter.string(from: Date(timeIntervalSince1970: 0))
+    }
         
     @objc func fetchCommits() {
-        if let data = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100")!) {
+        let newestCommitDate = getNewestCommitDate()
+        
+        if let data = try? String(contentsOf: URL(string: "https://api.github.com/repos/apple/swift/commits?per_page=100&since=\(newestCommitDate)")!) {
             let jsonCommit = JSON(parseJSON: data)
             
             let jsonCommitArray = jsonCommit.arrayValue
@@ -194,5 +244,19 @@ class ViewController: UITableViewController {
         
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true)
+    }
+}
+
+extension ViewController: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+        
+        default:
+            break
+        }
     }
 }
